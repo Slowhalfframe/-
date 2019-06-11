@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title_name %}
+    登录
+{% endblock %}
+{% block lunbo %}
+{% endblock %}
+{% block main %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/app/sign_in.css' %}">
+    <div id="box" class="col-md-8 col-md-offset-2">
+        <div id="form_box">
+            <form class="form-horizontal" method="post" action="/users/sign_in/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">昵称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="请输入您的昵称">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-3 control-label">密码：</label>
+                    <div class="col-sm-9">
+                        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="请输入您的密码">
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <label for="yanzhengma" class="col-sm-3 control-label">验证码：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="code" class="form-control" id="yanzhengma" placeholder="请输入验证码">
+                    </div>
+                    <div class="col-sm-4">
+                        <a onclick="changeCode()" href="javascript:void(0)">
+                            <img src="{% url 'users:code' %}" id="code" title="点击刷新验证码">
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                                       <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="islong"> 七天免密登录
+                        </label>
+                    </div>
+                    </div>
+                </div>
+                <input type="text" name="next" value="{{next_url}}" hidden>
+                <div class="form-group">
+                    <div class="col-sm-10 col-md-offset-2">
+                        <button type="submit" class="btn btn-success btn-block">登录</button>
+                    </div>
+                </div>
+            </form>
+            <p class="text-center" style="color: red; font-size: 13px;margin-top: 30px;">{{ msg }}</p>
+        </div>
+    </div>
+
+    <script>
+        // 刷新验证码
+        function changeCode() {
+            document.getElementById("code").src = "/users/code/?id=" + Math.random()
+        }
+    </script>
+{% endblock %}
+{% block footer %}
+    <div class="footer">
+        <p>© 2019 自主学习站 鄂ICP备 12345678号-1</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title_name %}
+    分类
+{% endblock %}
+{% block lunbo %}
+{% endblock %}
+{% block main %}
+    <div class="course_list">
+        <div class="row">
+        {% for search in courses %}
+            <div class="col-sm-4 col-md-3 course">
+                <div class="thumbnail">
+                    <a href="/course/detail/?id={{ search.id }}"><img src="/{{ search.cover_img }}" alt="..."></a>
+                    <div class="caption">
+                        <h4 class="course-title"><a href="/course/detail/?id={{ search.id }}">{{ search.title }}</a></h4>
+                        <p class="course-info">{{ search.course_info | truncatechars:20 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            很抱歉，当前分类还没有课程。<br><br>
+            <a href="javascript:void(0);" onClick="javascript :history.back(-1);">点击返回上一级</a>
+            <p></p>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

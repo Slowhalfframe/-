@@ -1,0 +1,115 @@
+body{
+    padding-top: 60px;
+    background-color: #f3f5f7;
+    /*position: relative;*/
+}
+#top-nav{
+    width: 100%;
+    background-color: #fff;
+    height: 52px;
+    border-bottom:1px solid #aaa;
+}
+.navbar-default{
+    background-color: #fff;
+    border: none;
+    color: #4d555d!important;
+    font-size: 16px;
+}
+.navbar-brand{
+    font-size: 18px;
+    font-weight: bolder;
+}
+.carousel-inner{
+    height: 350px;
+}
+.carousel-inner img{
+    width: 100%;
+    height: auto;
+}
+main{
+    margin: 35px 0;
+}
+.course_list{
+    margin-bottom: 25px;
+}
+.title-p{
+    height: 30px;
+
+}
+.small-title{
+    font-weight: bolder;
+    font-size: 15px;
+    color: #444;
+}
+.title-link{
+    color: #999;
+}
+.title-link:hover{
+    text-decoration: none;
+    color: #999;
+}
+.course-title{
+    font-weight: bolder;
+}
+.course-info{
+    font-size: 13px;
+}
+footer{
+    padding: 35px 0 20px;
+    background-color: #fff;
+    /*width: 100%;*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+}
+.zuo a{
+    color: #666;
+    margin-right: 15px;
+}
+.zuo a:hover{
+    text-decoration: none;
+}
+.you ul li{
+    list-style: none;
+    width: 50px;
+}
+.you span{
+    display: block;
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    color: #555;
+}
+.you img{
+    width: 45px;
+    height: 45px;
+    margin-bottom: 10px;
+}
+#back_top{
+    /*boeder:1px solid #111;*/
+    position: fixed;
+    right: 3%;
+    bottom: 3%;
+    width: 33px;
+    height: 50px;
+    background-color: #337ab7;
+}
+#back_top > span{
+    width: 33px;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+}
+.course_list a{
+    color: #333;
+}
+.course_list a:hover{
+    color: #333;
+    text-decoration: none;
+}
+.course{
+    height: 260px;
+}
+main{
+    min-height: 700px;
+}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title_name %}
+    个人中心
+{% endblock %}
+{% block lunbo %}
+{% endblock %}
+{% block main %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/app/sign_in.css' %}">
+    <div id="box" class="col-md-12">
+    <div class="boxs">
+        <div class="bottom_box">
+            <div id="heade_top"></div>
+{#            <img src="/{{ user.head }}" width="100%" height="100%">#}
+            <div id="info">
+                <div id="header" class="pull-left" >
+                    <img src="/{{ user.head }}" width="100%" height="100%">
+                </div>
+                <div class="infos pull-left">
+                    <p><h4>{{ request.user.username }}</h4>
+                    {% if user.sex == 'man'%}
+                    <span style="color: blue;" class="glyphicon glyphicon-user"></span>
+                    {% else %}
+                    <span style="color: red;" class="glyphicon glyphicon-user"></span>
+                    {% endif %}
+                {% if user.age %}
+                    <span>{{ user.age }}</span>
+                {% else %}
+                {% endif %}
+                    </p>
+                {% if user.phone %}
+                    <p><span>{{ user.phone }}</span></p>
+                {% else %}
+                {% endif %}
+
+                </div>
+                <div class="change pull-right">
+                    <button class="btn"><a href="/users/edit/">修改个人资料</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if all_course %}
+    <div class="panel panel-default" style="margin-top: 200px;">
+      <!-- Default panel contents -->
+      <div class="panel-heading"><h4>我上传的课程</h4></div>
+      <table class="table table-hover">
+        <tr>
+            <th>序号</th>
+            <th>课程名称</th>
+            <th>上传时间</th>
+            <th>观看次数</th>
+            <th>被收藏数</th>
+            <th colspan="2">操作</th>
+        </tr>
+          {% for all in all_course %}
+          <tr style="text-align: center">
+              <td>1</td>
+              <td><a style="color: #333;" href="/course/detail/?id={{ all.id }}">{{ all.title }}</a></td>
+              <td>{{ all.add_time }}</td>
+              <td>{{ all.click_num }}</td>
+              <td>{{ all.collection_num }}</td>
+              <td><a href="/course/update_course/?id={{ all.id }}">修改</a></td>
+              <td><a href="/course/del_course/?id={{ all.id }}">删除</a></td>
+          </tr>
+          {% endfor %}
+      </table>
+    </div>
+    {% else %}{% endif %}
+
+    {% if all_collection %}
+    <div class="panel panel-default" style="margin-top: 30px;">
+      <!-- Default panel contents -->
+      <div class="panel-heading"><h4>我收藏的课程</h4></div>
+      <table class="table table-hover">
+        <tr>
+            <th>序号</th>
+            <th>课程名称</th>
+            <th>上传时间</th>
+            <th>收藏数</th>
+        </tr>
+          {% for all in all_collection %}
+          <tr style="text-align: center">
+              <td>1</td>
+              <td><a style="color: #333;" href="/course/detail/?id={{ all.course.id }}">{{ all.course.title }}</a></td>
+              <td>{{ all.add_time }}</td>
+              <td>{{ all.course.collection_num }}</td>
+          </tr>
+          {% endfor %}
+      </table>
+    </div>
+    {% else %}{% endif %}
+
+
+{% endblock %}

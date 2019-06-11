@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title_name %}
+    修改课程
+{% endblock %}
+
+{% block lunbo %}
+{% endblock %}
+
+{% block main %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'course/css/app/course.css' %}">
+    <form enctype="multipart/form-data" id="form1" method="post" action="/course/update_course/">
+        {% csrf_token %}
+        <ul>
+            <li>
+                <label><h4>课程标题</h4></label>
+                <input type="text" required class="form-control" placeholder="请输入标题" name="title" id="title" value="{{ course.title }}">
+            </li>
+            <li>
+                <label><h4>课程介绍</h4></label>
+                <textarea class="form-control" required name="content" id="content" rows="5">{{ course.course_info }}</textarea>
+            </li>
+            <li>
+                <label><h4>讲师介绍</h4></label>
+                <textarea class="form-control" required name="teac_content" id="teac_content" rows="5">{{ course.teacher_info }}</textarea>
+            </li>
+            <li style="margin: 30px 0">
+                <label><h4>修改封面图片</h4></label>
+                <p>已上传：<img src="/{{ course.cover_img }}" width="100px"></p>
+                <input type="file" name="cover_img" id="cover_img">
+            </li>
+            <li style="margin: 30px 0">
+                <label><h4>修改课程</h4></label>
+                <p>已上传：{{ course.course }}</p>
+                <input type="file" name="course" id="course">
+            </li>
+                    <li>
+                <label><h4>修改课件（可选）</h4></label>
+                <br>课件名称：
+                <input type="text" placeholder="课件名称" value="{{ course.kj.kejian_name }}" class="form-control" name="kejian_name" id="kejian_name"><br>
+                修改课件文件：
+                        <p>已上传：{{ course.kj.kejian }}</p>
+                        <input type="file" name="kejian" id="course">
+            </li>
+            <li style="margin: 30px 0">
+                <label><h4>课程分类</h4></label><br>
+                <select required name="type1" id="type1">
+                    <option value="-1">请选择一级类型</option>
+                    {% for type in course_type %}
+                    <option value="{{ type.id }}" selected>{{ type.name }}</option>
+                    {% endfor %}
+                </select>
+            </li>
+            <input type="text" value="{{ course.id }}" name="id" hidden>
+            <li style="margin: 80px 10px">
+                <button class="submit btn btn-success btn-block" id="fabu" href="javascript:void(0);" type="submit"
+                   id="fabu">修改</button>
+            </li>
+        </ul>
+    </form>
+{% endblock %}

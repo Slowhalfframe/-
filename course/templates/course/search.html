@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block lunbo %}
+{% endblock %}
+{% block main %}
+    {% load static %}
+    <div class="course_list">
+        <div class="row">
+        <p class="title-p">
+            <span class="small-title pull-left">为您找到包含 <span style="color: red;">{{ query }}</span> 的所有课程：</span>
+        </p>
+            {% for search in courses %}
+                <div class="col-sm-4 col-md-3 course">
+                    <div class="thumbnail">
+                        <a href="/course/detail/?id={{ search.id }}"><img src="/{{ search.cover_img }}" alt="..."></a>
+                        <div class="caption">
+                            <h4 class="course-title"><a href="/course/detail/?id={{ search.id }}">{{ search.title }}</a></h4>
+                            <p class="course-info">{{ search.course_info | truncatechars:20 }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                很抱歉，没有找到你要的分类。<br><br>
+                <a  href="javascript:void(0);" onClick="javascript :history.back(-1);">点击返回上一级</a>
+                <p></p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

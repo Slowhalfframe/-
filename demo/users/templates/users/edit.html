@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title_name %}
+    修改个人资料
+{% endblock %}
+{% block lunbo %}
+{% endblock %}
+{% block main %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/app/sign_in.css' %}">
+    <div id="box" class="col-md-12">
+        <div class="boxs">
+            <div class="bottom_box">
+                <div id="heade_top"></div>
+                {#            <img src="/{{ user.head }}" width="100%" height="100%">#}
+                <div id="info">
+                    <div id="header" class="pull-left">
+                        <img src="/{{ user.head }}" width="100%" height="100%">
+                    </div>
+                    <div class="infos pull-left">
+                        <p><h4>{{ request.user.username }}</h4>
+                        {% if user.sex == 'man' %}
+                            <span style="color: blue;" class="glyphicon glyphicon-user"></span>
+                        {% else %}
+                            <span style="color: red;" class="glyphicon glyphicon-user"></span>
+                        {% endif %}
+                        {% if user.age %}
+                            <span>{{ user.age }}</span>
+                        {% else %}
+                        {% endif %}
+                        </p>
+                        {% if user.phone %}
+                            <p><span>{{ user.phone }}</span></p>
+                        {% else %}
+                        {% endif %}
+
+                    </div>
+                    <div class="change pull-right">
+                        <button class="btn"><a href="/users/user_info/">返回个人中心</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="edit_info">
+            <div id="edit_box">
+                    <p class="text-center">{{ msg }}</p>
+                <form action="/users/edit/" method="post">
+                {% csrf_token %}
+                    <ul>
+                        <li>
+                            <div class="form-group">
+                                <label for="username" class="col-md-2 control-label">昵称：</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="username"
+                                           value="{{ request.user.username }}" name="username">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label for="username" class="col-md-2 control-label">性别：</label>
+                                <div class="col-md-10">
+                                    <label class="checkbox-inline">
+                                        <input type="radio"
+                                               {% if user.sex == 'man' %}checked{% endif %} name="man" value="man">男
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="radio"
+                                               {% if user.sex == 'woman' %}checked{% endif %} name="man" value="woman">女
+                                    </label><br><br>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="form-group">
+                                <label for="age" class="col-md-2 control-label">年龄：</label>
+                                <div class="col-md-10">
+                                    <input type="number" name="age" class="form-control" id="age" value="{{ user.age }}">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="form-group">
+                                <label for="phone" class="col-md-2 control-label">手机号码：</label>
+                                <div class="col-md-10">
+                                    <input type="number" name="phone" class="form-control" id="phone" value="{{ user.phone }}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button class="btn btn-danger btn-block">修改</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block footer %}
+    <div class="footer">
+        <p>© 2019 自主学习站 鄂ICP备 12345678号-1</p>
+    </div>
+{% endblock %}
