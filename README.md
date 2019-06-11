@@ -1,4 +1,5 @@
 # study-for-video-of-online
+# 在线视频自主学习网站 
 基于django的在线视频自主学习站，本项目为外包项目。
 
 ## 本项目环境：
